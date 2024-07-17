@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خطوات عمل مشروع في React</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+            padding: 20px;
+            direction: rtl;
+            text-align: right;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2 {
+            color: #555;
+        }
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .step {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>خطوات عمل مشروع في React</h1>
+        <div class="step">
+            <h2>1. إعداد بيئة العمل</h2>
+            <p>تأكد من أن لديك Node.js و npm مثبتين على جهازك. يمكنك التحقق من التثبيت باستخدام الأوامر التالية في سطر الأوامر:</p>
+            <pre><code>node -v
+npm -v</code></pre>
+            <p>قم بتثبيت أداة إنشاء تطبيق React باستخدام npm:</p>
+            <pre><code>npm install -g create-react-app</code></pre>
+        </div>
+        <div class="step">
+            <h2>2. إنشاء مشروع React جديد</h2>
+            <p>استخدم create-react-app لإنشاء مشروع جديد:</p>
+            <pre><code>npx create-react-app my-app</code></pre>
+            <p>قم بتغيير الدليل إلى مجلد المشروع الجديد:</p>
+            <pre><code>cd my-app</code></pre>
+        </div>
+        <div class="step">
+            <h2>3. تشغيل التطبيق</h2>
+            <p>قم بتشغيل التطبيق الافتراضي للتأكد من أن كل شيء يعمل بشكل صحيح:</p>
+            <pre><code>npm start</code></pre>
+            <p>سيفتح المتصفح تلقائيًا على <code>http://localhost:3000</code> لعرض التطبيق.</p>
+        </div>
+        <div class="step">
+            <h2>4. بنية المجلدات والملفات</h2>
+            <p>داخل مجلد المشروع، ستجد بنية الملفات الأساسية:</p>
+            <pre><code>my-app/
+├── node_modules/
+├── public/
+├── src/
+├── .gitignore
+├── package.json
+├── README.md</code></pre>
+        </div>
+        <div class="step">
+            <h2>5. تطوير التطبيق</h2>
+            <p><code>src/index.js</code>: هو نقطة الدخول للتطبيق.</p>
+            <p><code>src/App.js</code>: هو المكون الرئيسي للتطبيق.</p>
+            <p>يمكنك تعديل هذه الملفات وإضافة مكونات جديدة داخل مجلد <code>src</code> لتطوير واجهات المستخدم.</p>
+        </div>
+        <div class="step">
+            <h2>6. إضافة المكونات</h2>
+            <p>لإنشاء مكون جديد، يمكنك إنشاء ملف جديد في مجلد <code>src</code>، على سبيل المثال <code>src/components/MyComponent.js</code>:</p>
+            <pre><code>import React from 'react';
+
+function MyComponent() {
+  return (
+    <div>
+      <h1>Hello, World!</h1>
+    </div>
+  );
+}
+
+export default MyComponent;</code></pre>
+            <p>قم بإضافة هذا المكون إلى <code>App.js</code>:</p>
+            <pre><code>import React from 'react';
+import MyComponent from './components/MyComponent';
+
+function App() {
+  return (
+    <div className="App">
+      <MyComponent />
+    </div>
+  );
+}
+
+export default App;</code></pre>
+        </div>
+        <div class="step">
+            <h2>7. إدارة الحالة (State) والتفاعل مع المستخدم</h2>
+            <p>يمكنك استخدام <code>useState</code> لإدارة الحالة المحلية داخل المكونات.</p>
+            <pre><code>import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+
+export default Counter;</code></pre>
+        </div>
+        <div class="step">
+            <h2>8. التعامل مع البيانات</h2>
+            <p>يمكنك استخدام <code>fetch</code> أو أي مكتبة أخرى مثل Axios لجلب البيانات من API.</p>
+            <pre><code>import React, { useEffect, useState } from 'react';
+
+function DataFetching() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch('https://api.example.com/data')
+      .then(response => response.json())
+      .then(data => setData(data));
+  }, []);
+
+  return (
+    <div>
+      {data.map(item => (
+        <p key={item.id}>{item.name}</p>
+      ))}
+    </div>
+  );
+}
+
+export default DataFetching;</code></pre>
+        </div>
+    </div>
+</body>
+</html>
