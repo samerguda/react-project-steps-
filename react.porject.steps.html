@@ -38,6 +38,18 @@
             padding: 10px;
             border-radius: 8px;
             overflow-x: auto;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
         }
         .step {
             margin-bottom: 20px;
@@ -50,34 +62,34 @@
         <div class="step">
             <h2>1. إعداد بيئة العمل</h2>
             <p>تأكد من أن لديك Node.js و npm مثبتين على جهازك. يمكنك التحقق من التثبيت باستخدام الأوامر التالية في سطر الأوامر:</p>
-            <pre><code>node -v
-npm -v</code></pre>
+            <pre><code id="code1">node -v
+npm -v</code><button class="copy-btn" onclick="copyToClipboard('code1')">نسخ</button></pre>
             <p>قم بتثبيت أداة إنشاء تطبيق React باستخدام npm:</p>
-            <pre><code>npm install -g create-react-app</code></pre>
+            <pre><code id="code2">npm install -g create-react-app</code><button class="copy-btn" onclick="copyToClipboard('code2')">نسخ</button></pre>
         </div>
         <div class="step">
             <h2>2. إنشاء مشروع React جديد</h2>
             <p>استخدم create-react-app لإنشاء مشروع جديد:</p>
-            <pre><code>npx create-react-app my-app</code></pre>
+            <pre><code id="code3">npx create-react-app my-app</code><button class="copy-btn" onclick="copyToClipboard('code3')">نسخ</button></pre>
             <p>قم بتغيير الدليل إلى مجلد المشروع الجديد:</p>
-            <pre><code>cd my-app</code></pre>
+            <pre><code id="code4">cd my-app</code><button class="copy-btn" onclick="copyToClipboard('code4')">نسخ</button></pre>
         </div>
         <div class="step">
             <h2>3. تشغيل التطبيق</h2>
             <p>قم بتشغيل التطبيق الافتراضي للتأكد من أن كل شيء يعمل بشكل صحيح:</p>
-            <pre><code>npm start</code></pre>
+            <pre><code id="code5">npm start</code><button class="copy-btn" onclick="copyToClipboard('code5')">نسخ</button></pre>
             <p>سيفتح المتصفح تلقائيًا على <code>http://localhost:3000</code> لعرض التطبيق.</p>
         </div>
         <div class="step">
             <h2>4. بنية المجلدات والملفات</h2>
             <p>داخل مجلد المشروع، ستجد بنية الملفات الأساسية:</p>
-            <pre><code>my-app/
+            <pre><code id="code6">my-app/
 ├── node_modules/
 ├── public/
 ├── src/
 ├── .gitignore
 ├── package.json
-├── README.md</code></pre>
+├── README.md</code><button class="copy-btn" onclick="copyToClipboard('code6')">نسخ</button></pre>
         </div>
         <div class="step">
             <h2>5. تطوير التطبيق</h2>
@@ -88,7 +100,7 @@ npm -v</code></pre>
         <div class="step">
             <h2>6. إضافة المكونات</h2>
             <p>لإنشاء مكون جديد، يمكنك إنشاء ملف جديد في مجلد <code>src</code>، على سبيل المثال <code>src/components/MyComponent.js</code>:</p>
-            <pre><code>import React from 'react';
+            <pre><code id="code7">import React from 'react';
 
 function MyComponent() {
   return (
@@ -98,9 +110,9 @@ function MyComponent() {
   );
 }
 
-export default MyComponent;</code></pre>
+export default MyComponent;</code><button class="copy-btn" onclick="copyToClipboard('code7')">نسخ</button></pre>
             <p>قم بإضافة هذا المكون إلى <code>App.js</code>:</p>
-            <pre><code>import React from 'react';
+            <pre><code id="code8">import React from 'react';
 import MyComponent from './components/MyComponent';
 
 function App() {
@@ -111,12 +123,12 @@ function App() {
   );
 }
 
-export default App;</code></pre>
+export default App;</code><button class="copy-btn" onclick="copyToClipboard('code8')">نسخ</button></pre>
         </div>
         <div class="step">
             <h2>7. إدارة الحالة (State) والتفاعل مع المستخدم</h2>
             <p>يمكنك استخدام <code>useState</code> لإدارة الحالة المحلية داخل المكونات.</p>
-            <pre><code>import React, { useState } from 'react';
+            <pre><code id="code9">import React, { useState } from 'react';
 
 function Counter() {
   const [count, setCount] = useState(0);
@@ -131,12 +143,12 @@ function Counter() {
   );
 }
 
-export default Counter;</code></pre>
+export default Counter;</code><button class="copy-btn" onclick="copyToClipboard('code9')">نسخ</button></pre>
         </div>
         <div class="step">
             <h2>8. التعامل مع البيانات</h2>
             <p>يمكنك استخدام <code>fetch</code> أو أي مكتبة أخرى مثل Axios لجلب البيانات من API.</p>
-            <pre><code>import React, { useEffect, useState } from 'react';
+            <pre><code id="code10">import React, { useEffect, useState } from 'react';
 
 function DataFetching() {
   const [data, setData] = useState([]);
@@ -156,8 +168,18 @@ function DataFetching() {
   );
 }
 
-export default DataFetching;</code></pre>
+export default DataFetching;</code><button class="copy-btn" onclick="copyToClipboard('code10')">نسخ</button></pre>
         </div>
     </div>
+    <script>
+        function copyToClipboard(id) {
+            var code = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(code).then(function() {
+                alert('تم نسخ الشيفرة بنجاح');
+            }, function(err) {
+                alert('فشل في نسخ الشيفرة');
+            });
+        }
+    </script>
 </body>
 </html>
