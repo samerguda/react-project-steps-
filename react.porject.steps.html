@@ -1,183 +1,223 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خطوات عمل مشروع في React</title>
+    <title>React To-Do List App Code</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            line-height: 1.6;
-            padding: 20px;
-            direction: rtl;
-            text-align: right;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        h2 {
-            color: #555;
-        }
-        code {
-            background: #eee;
-            padding: 2px 4px;
-            border-radius: 4px;
+            margin: 20px;
         }
         pre {
-            background: #eee;
-            padding: 10px;
-            border-radius: 8px;
-            overflow-x: auto;
-            position: relative;
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-break: break-all;
         }
-        .copy-btn {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #007bff;
-            color: #fff;
+        button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
             border: none;
-            padding: 5px 10px;
             border-radius: 5px;
             cursor: pointer;
         }
-        .step {
+        button:hover {
+            background-color: #45a049;
+        }
+        .code-container {
             margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>خطوات عمل مشروع في React</h1>
-        <div class="step">
-            <h2>1. إعداد بيئة العمل</h2>
-            <p>تأكد من أن لديك Node.js و npm مثبتين على جهازك. يمكنك التحقق من التثبيت باستخدام الأوامر التالية في سطر الأوامر:</p>
-            <pre><code id="code1">node -v
-npm -v</code><button class="copy-btn" onclick="copyToClipboard('code1')">نسخ</button></pre>
-            <p>قم بتثبيت أداة إنشاء تطبيق React باستخدام npm:</p>
-            <pre><code id="code2">npm install -g create-react-app</code><button class="copy-btn" onclick="copyToClipboard('code2')">نسخ</button></pre>
-        </div>
-        <div class="step">
-            <h2>2. إنشاء مشروع React جديد</h2>
-            <p>استخدم create-react-app لإنشاء مشروع جديد:</p>
-            <pre><code id="code3">npx create-react-app my-app</code><button class="copy-btn" onclick="copyToClipboard('code3')">نسخ</button></pre>
-            <p>قم بتغيير الدليل إلى مجلد المشروع الجديد:</p>
-            <pre><code id="code4">cd my-app</code><button class="copy-btn" onclick="copyToClipboard('code4')">نسخ</button></pre>
-        </div>
-        <div class="step">
-            <h2>3. تشغيل التطبيق</h2>
-            <p>قم بتشغيل التطبيق الافتراضي للتأكد من أن كل شيء يعمل بشكل صحيح:</p>
-            <pre><code id="code5">npm start</code><button class="copy-btn" onclick="copyToClipboard('code5')">نسخ</button></pre>
-            <p>سيفتح المتصفح تلقائيًا على <code>http://localhost:3000</code> لعرض التطبيق.</p>
-        </div>
-        <div class="step">
-            <h2>4. بنية المجلدات والملفات</h2>
-            <p>داخل مجلد المشروع، ستجد بنية الملفات الأساسية:</p>
-            <pre><code id="code6">my-app/
-├── node_modules/
-├── public/
-├── src/
-├── .gitignore
-├── package.json
-├── README.md</code><button class="copy-btn" onclick="copyToClipboard('code6')">نسخ</button></pre>
-        </div>
-        <div class="step">
-            <h2>5. تطوير التطبيق</h2>
-            <p><code>src/index.js</code>: هو نقطة الدخول للتطبيق.</p>
-            <p><code>src/App.js</code>: هو المكون الرئيسي للتطبيق.</p>
-            <p>يمكنك تعديل هذه الملفات وإضافة مكونات جديدة داخل مجلد <code>src</code> لتطوير واجهات المستخدم.</p>
-        </div>
-        <div class="step">
-            <h2>6. إضافة المكونات</h2>
-            <p>لإنشاء مكون جديد، يمكنك إنشاء ملف جديد في مجلد <code>src</code>، على سبيل المثال <code>src/components/MyComponent.js</code>:</p>
-            <pre><code id="code7">import React from 'react';
+    <h1>React To-Do List App Code</h1>
+    
+    <h2>Step 1: Setting Up the Project</h2>
+    <p>First, you'll need to set up your React environment. If you haven't already, install <code>create-react-app</code> and create a new project.</p>
+    <pre>
+npx create-react-app todo-list
+cd todo-list
+npm start
+    </pre>
+    <button onclick="copyToClipboard('npx create-react-app todo-list\ncd todo-list\nnpm start')">Copy Setup Commands</button>
 
-function MyComponent() {
-  return (
-    <div>
-      <h1>Hello, World!</h1>
-    </div>
-  );
-}
+    <h2>Step 2: Structuring the Project</h2>
+    <p>Create the necessary components for the application. A basic structure might include:</p>
+    <ul>
+        <li><code>App.js</code>: The main component.</li>
+        <li><code>TodoList.js</code>: A component to display the list of to-dos.</li>
+        <li><code>TodoItem.js</code>: A component to display individual to-do items.</li>
+        <li><code>TodoForm.js</code>: A component to handle adding new to-dos.</li>
+    </ul>
 
-export default MyComponent;</code><button class="copy-btn" onclick="copyToClipboard('code7')">نسخ</button></pre>
-            <p>قم بإضافة هذا المكون إلى <code>App.js</code>:</p>
-            <pre><code id="code8">import React from 'react';
-import MyComponent from './components/MyComponent';
+    <h2>Step 3: Implementing the Components</h2>
+
+    <div class="code-container">
+        <h3>App.js</h3>
+        <pre id="app-js">
+import React, { useState } from 'react';
+import TodoList from './TodoList';
+import TodoForm from './TodoForm';
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  const addTodo = (todo) => {
+    setTodos([...todos, { text: todo, completed: false }]);
+  };
+
+  const toggleComplete = (index) => {
+    const newTodos = [...todos];
+    newTodos[index].completed = !newTodos[index].completed;
+    setTodos(newTodos);
+  };
+
+  const removeTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  };
+
   return (
     <div className="App">
-      <MyComponent />
+      <h1>To-Do List</h1>
+      <TodoForm addTodo={addTodo} />
+      <TodoList todos={todos} toggleComplete={toggleComplete} removeTodo={removeTodo} />
     </div>
   );
 }
 
-export default App;</code><button class="copy-btn" onclick="copyToClipboard('code8')">نسخ</button></pre>
-        </div>
-        <div class="step">
-            <h2>7. إدارة الحالة (State) والتفاعل مع المستخدم</h2>
-            <p>يمكنك استخدام <code>useState</code> لإدارة الحالة المحلية داخل المكونات.</p>
-            <pre><code id="code9">import React, { useState } from 'react';
-
-function Counter() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
+export default App;
+        </pre>
+        <button onclick="copyToClipboard('app-js')">Copy App.js</button>
     </div>
-  );
-}
 
-export default Counter;</code><button class="copy-btn" onclick="copyToClipboard('code9')">نسخ</button></pre>
-        </div>
-        <div class="step">
-            <h2>8. التعامل مع البيانات</h2>
-            <p>يمكنك استخدام <code>fetch</code> أو أي مكتبة أخرى مثل Axios لجلب البيانات من API.</p>
-            <pre><code id="code10">import React, { useEffect, useState } from 'react';
+    <div class="code-container">
+        <h3>TodoList.js</h3>
+        <pre id="todo-list-js">
+import React from 'react';
+import TodoItem from './TodoItem';
 
-function DataFetching() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    fetch('https://api.example.com/data')
-      .then(response => response.json())
-      .then(data => setData(data));
-  }, []);
-
+function TodoList({ todos, toggleComplete, removeTodo }) {
   return (
     <div>
-      {data.map(item => (
-        <p key={item.id}>{item.name}</p>
+      {todos.map((todo, index) => (
+        <TodoItem
+          key={index}
+          index={index}
+          todo={todo}
+          toggleComplete={toggleComplete}
+          removeTodo={removeTodo}
+        />
       ))}
     </div>
   );
 }
 
-export default DataFetching;</code><button class="copy-btn" onclick="copyToClipboard('code10')">نسخ</button></pre>
-        </div>
+export default TodoList;
+        </pre>
+        <button onclick="copyToClipboard('todo-list-js')">Copy TodoList.js</button>
     </div>
+
+    <div class="code-container">
+        <h3>TodoItem.js</h3>
+        <pre id="todo-item-js">
+import React from 'react';
+
+function TodoItem({ todo, index, toggleComplete, removeTodo }) {
+  return (
+    <div style={{ textDecoration: todo.completed ? 'line-through' : '' }}>
+      {todo.text}
+      <button onClick={() => toggleComplete(index)}>
+        {todo.completed ? 'Undo' : 'Complete'}
+      </button>
+      <button onClick={() => removeTodo(index)}>Remove</button>
+    </div>
+  );
+}
+
+export default TodoItem;
+        </pre>
+        <button onclick="copyToClipboard('todo-item-js')">Copy TodoItem.js</button>
+    </div>
+
+    <div class="code-container">
+        <h3>TodoForm.js</h3>
+        <pre id="todo-form-js">
+import React, { useState } from 'react';
+
+function TodoForm({ addTodo }) {
+  const [value, setValue] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!value) return;
+    addTodo(value);
+    setValue('');
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <button type="submit">Add Todo</button>
+    </form>
+  );
+}
+
+export default TodoForm;
+        </pre>
+        <button onclick="copyToClipboard('todo-form-js')">Copy TodoForm.js</button>
+    </div>
+
+    <h2>Step 4: Styling</h2>
+    <p>You can add CSS to style your to-do list. Create a <code>App.css</code> file and import it in <code>App.js</code>.</p>
+    <div class="code-container">
+        <h3>App.css</h3>
+        <pre id="app-css">
+.App {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin-top: 50px;
+}
+
+input {
+  padding: 10px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px;
+  margin-left: 5px;
+}
+        </pre>
+        <button onclick="copyToClipboard('app-css')">Copy App.css</button>
+    </div>
+
+    <h2>Step 5: Running the App</h2>
+    <p>Run <code>npm start</code> to start your development server and view your to-do list app in the browser.</p>
+    <pre>
+npm start
+    </pre>
+    <button onclick="copyToClipboard('npm start')">Copy Run Command</button>
+
     <script>
         function copyToClipboard(id) {
-            var code = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(code).then(function() {
-                alert('تم نسخ الشيفرة بنجاح');
-            }, function(err) {
-                alert('فشل في نسخ الشيفرة');
+            const code = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard');
+            }).catch(err => {
+                alert('Failed to copy: ', err);
             });
         }
     </script>
